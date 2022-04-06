@@ -13,7 +13,7 @@ It basically takes a screenshot of all the video files at 3 min 17 sec mark and 
 - Simple and works in a shell
 
 ## Drawbacks
-- Kinda slow
+- Kinda slow when dealing with lots of files
 
 ## Dependencies 
 - mpv

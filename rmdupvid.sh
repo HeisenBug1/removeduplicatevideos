@@ -1,4 +1,5 @@
 #!/bin/bash
+ramdisk=""
 
 # Generate image
 # ------------------------------------------------------------------------------------------
@@ -11,14 +12,18 @@ ary=( $(find -maxdepth 1 -type f -exec file -N -i -- {} + | sed -n 's!: video/[^
 for vid in "${ary[@]}"
 do
 	newFile=$(echo "$vid" | rev | cut -f 2- -d '.' | rev)
-	mpv $vid --no-audio --vo=image --start=00:03:17 --frames=1 --o=${newFile}.jpg
+	if [ -z "${ramdisk}" ]; then
+		mpv $vid --no-audio --vo=image --start=00:03:17 --frames=1 --o=${newFile}.jpg
+	else
+		mpv $vid --no-audio --vo=image --start=00:03:17 --frames=1 --o=${ramdisk}${newFile}.jpg
+	fi
 done
 
 
 # ------------------------------------------------------------------------------------------
 
 
-# helper function
+# # helper function
 find_match () {
 	for vid in "${ary[@]}"
 	do
@@ -36,7 +41,7 @@ find_match () {
 
 
 # # Get list of duplicate images
-# # ------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------
 files=$(findimagedupes *.jpg)
 
 # format $text to add new lines for each file:
@@ -56,8 +61,6 @@ do
 	find_match "$delFile2"
 	matchFile2="$function_return"
 
-	# echo $matchFile1
-	# echo $matchFile2
 	# find original video (older)
 	if [ matchFile1 -ot matchFile2 ]
 	then
