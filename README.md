@@ -4,6 +4,11 @@ Inspired by https://github.com/0x90d/videoduplicatefinder but needed something w
 
 Used ideas from https://openwritings.net/pg/linux/linux-find-duplicate-video
 
+## How it works
+It basically takes a screenshot of all the video files at 3 min 17 sec mark and compares them with eachother. If two screenshots match, then the corresponding video files are duplicate.
+
+***Right now it does not remove the video files, but moves them to a directory called 'remove'. You can manually delete them from there.***
+
 ## Features
 - Simple and works in a shell
 
@@ -23,8 +28,3 @@ Used ideas from https://openwritings.net/pg/linux/linux-find-duplicate-video
 
 Put the script in any directory with video files you suspect has duplicates.
 Then run `bash rmdupvid.sh` or `./rmdupvid.sh` if script is executable.
-
-## How it works
-It basically takes a screenshot of all the video files at 3 min 17 sec mark and compares them with eachother. If two screenshots match, then the corresponding video files are duplicate.
-
-***Right now it does not remove the video files, but moves them to a directory called 'remove'. You can manually delete them from there.***
