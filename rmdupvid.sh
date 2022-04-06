@@ -37,10 +37,10 @@ find_match () {
 
 # # Get list of duplicate images
 # # ------------------------------------------------------------------------------------------
-text=$(findimagedupes *.jpg)
+files=$(findimagedupes *.jpg)
 
 # format $text to add new lines for each file:
-files=$(echo $text | sed 's+/++')	# remove the first occurance of '/'
+files=$(echo $files | sed 's+/++')	# remove the first occurance of '/'
 files=$(echo $files | sed 's+ /+\n+g')	# then remove the rest and make new lines for each file
 files=($files)	# convert newline string to array
 
